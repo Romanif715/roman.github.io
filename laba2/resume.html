@@ -1,0 +1,289 @@
+<!DOCTYPE html> <!-- Вказує, що це HTML5 документ -->
+<html lang="uk"> <!-- Мова документа - українська -->
+<head>
+    <meta charset="UTF-8"> <!-- Кодування документа -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- Адаптація під різні екрани -->
+    <title>Резюме - Кочетов Роман</title> <!-- Назва сторінки в вкладці браузера -->
+
+    <style>
+        /* Основні стилі */
+        * {
+            margin: 0; /* прибирає стандартні відступи */
+            padding: 0; /* прибирає стандартні поля */
+            box-sizing: border-box; /* коректний розрахунок ширини/висоти */
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* основний шрифт */
+        }
+
+        body {
+            background-color: #f5f7fa; /* фон сторінки */
+            color: #333; /* основний колір тексту */
+            line-height: 1.6; /* висота рядка */
+            padding-bottom: 40px; /* відступ знизу */
+        }
+
+        .container {
+            max-width: 1000px; /* максимальна ширина контенту */
+            margin: 0 auto; /* центр сторінки */
+            background-color: white; /* фон резюме */
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1); /* тінь */
+            border-radius: 8px; /* закруглені кути */
+            overflow: hidden; /* обрізає все зайве за межами контейнера */
+        }
+
+        /* Хедер */
+        header {
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%); /* градієнт фону */
+            color: white; /* колір тексту */
+            padding: 40px 0; /* внутрішні відступи зверху і знизу */
+        }
+
+        .header-content {
+            display: flex; /* горизонтальне розташування фото і тексту */
+            align-items: center; /* вирівнювання по вертикалі */
+            padding: 0 40px; /* відступи ліворуч і праворуч */
+        }
+
+        .photo-container {
+            width: 180px; /* ширина фото */
+            height: 180px; /* висота фото */
+            border-radius: 50%; /* кругла форма */
+            overflow: hidden; /* обрізає зайве */
+            border: 5px solid rgba(255, 255, 255, 0.3); /* рамка фото */
+            margin-right: 40px; /* відстань від тексту */
+            flex-shrink: 0; /* не стискається */
+        }
+
+        .profile-photo {
+            width: 100%; /* фото заповнює контейнер */
+            height: 100%;
+            object-fit: cover; /* масштабування з обрізкою, щоб заповнити контейнер */
+        }
+
+        .name-title h1 {
+            font-size: 2.5rem; /* розмір імені */
+            margin-bottom: 10px;
+        }
+
+        .name-title h2 {
+            font-size: 1.2rem; /* розмір професії */
+            font-weight: 400;
+            opacity: 0.9; /* трохи прозорий */
+        }
+
+        /* Навігація */
+        nav {
+            background-color: #2a5298; /* фон меню */
+            padding: 15px 0; /* відступи зверху і знизу */
+        }
+
+        .nav-menu {
+            display: flex; /* горизонтальне меню */
+            justify-content: center; /* по центру */
+            list-style: none; /* прибирає маркери списку */
+            padding: 0 40px;
+        }
+
+        .nav-menu li {
+            margin: 0 20px; /* відступ між пунктами меню */
+        }
+
+        .nav-menu a {
+            color: white; /* колір тексту меню */
+            text-decoration: none; /* прибирає підкреслення */
+            font-weight: 500;
+            font-size: 1.1rem;
+            padding: 8px 16px; /* внутрішні відступи кнопки */
+            border-radius: 4px; /* закруглені кути */
+            transition: background-color 0.3s; /* плавна зміна фону при наведенні */
+        }
+
+        .nav-menu a:hover {
+            background-color: rgba(255, 255, 255, 0.1); /* ефект при наведенні */
+        }
+
+        /* Основний контент */
+        .main-content {
+            display: flex; /* колонки горизонтально */
+            padding: 40px;
+        }
+
+        .left-column {
+            flex: 3; /* ширина лівої колонки */
+            padding-right: 30px;
+        }
+
+        .right-column {
+            flex: 2; /* ширина правої колонки */
+            padding-left: 30px;
+            border-left: 1px solid #eaeaea; /* лінія розділу колонок */
+        }
+
+        section {
+            margin-bottom: 40px; /* відстань між секціями */
+        }
+
+        h3 {
+            color: #1e3c72;
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #eaeaea; /* лінія під заголовком */
+        }
+
+        /* Досвід / освіта / курси */
+        .experience-item, .education-item, .course-item {
+            margin-bottom: 25px; /* відстань між елементами */
+        }
+
+        .job-title, .degree-title {
+            font-weight: 600;
+            font-size: 1.2rem;
+            color: #2a5298; /* синій колір для заголовків */
+            margin-bottom: 5px;
+        }
+
+        .company, .institution {
+            font-weight: 500;
+            color: #333;
+            margin-bottom: 5px;
+        }
+
+        .period {
+            color: #666;
+            font-style: italic; /* курсив для періоду */
+            font-size: 0.9rem;
+            margin-bottom: 10px;
+        }
+
+        .description {
+            color: #555;
+        }
+
+        /* Навички */
+        .skills-list {
+            display: flex;
+            flex-wrap: wrap; /* перенос тегів навичок на новий рядок */
+            gap: 10px;
+            margin-top: 15px;
+        }
+
+        .skill-tag {
+            background-color: #eef2ff; /* світло-синій фон */
+            color: #2a5298; /* колір тексту */
+            padding: 8px 15px; /* внутрішні відступи */
+            border-radius: 20px; /* закруглені теги */
+            font-weight: 500;
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 20px;
+            color: #666;
+            font-size: 0.9rem;
+            border-top: 1px solid #eaeaea;
+            margin-top: 40px;
+        }
+
+    </style>
+</head>
+<body>
+
+<div class="container"> <!-- основний контейнер резюме -->
+
+<header>
+    <div class="header-content"> <!-- блок фото + ім’я -->
+        <div class="photo-container">
+            <img src="foto.jpg" alt="Фото Кочетова Романа" class="profile-photo">
+        </div>
+        <div class="name-title">
+            <h1>Кочетов Роман</h1> <!-- ім'я -->
+            <h2>Junior Developer</h2> <!-- посада / ціль -->
+        </div>
+    </div>
+</header>
+
+<nav>
+    <ul class="nav-menu"> <!-- навігація по секціях -->
+        <li><a href="#main">Головна</a></li>
+        <li><a href="#experience">Досвід</a></li>
+        <li><a href="#education">Освіта</a></li>
+        <li><a href="#skills">Навички</a></li>
+        <li><a href="#contacts">Контакти</a></li>
+    </ul>
+</nav>
+
+<div class="main-content"> <!-- основний контент з колонками -->
+
+    <div class="left-column"> <!-- ліва колонка: досвід і освіта -->
+        <section id="experience">
+            <h3>Досвід роботи</h3>
+            <div class="experience-item">
+                <div class="job-title">Студент / Junior Developer</div>
+                <div class="company">Коледж, Івано-Франківськ</div>
+                <div class="period">2026 – тепер</div>
+                <div class="description">
+                    Робота над навчальними та практичними проєктами, вивчення мов програмування та баз.
+                </div>
+            </div>
+        </section>
+
+        <section id="education">
+            <h3>Освіта</h3>
+            <div class="education-item">
+                <div class="degree-title">Молодший бакалавр</div>
+                <div class="institution">Коледж, Комп’ютерні науки та інженерія</div>
+                <div class="period">2024 – 2026</div>
+            </div>
+
+            <h4 style="margin-top: 25px; margin-bottom: 15px;">Курси</h4>
+            <ol class="course-list">
+                <li class="course-item">
+                    <div class="job-title">HTML/CSS & Java</div>
+                    <div class="description">Онлайн курс, практичні завдання та проєкти, 2025</div>
+                </li>
+                <li class="course-item">
+                    <div class="job-title">C++</div>
+                    <div class="description">Курс по програмуванню, 2025</div>
+                </li>
+            </ol>
+        </section>
+    </div>
+
+    <div class="right-column"> <!-- права колонка: навички, контакти, мови -->
+        <section id="skills">
+            <h3>Навички</h3>
+            <div class="skills-list">
+                <span class="skill-tag">HTML / CSS</span>
+                <span class="skill-tag">Java</span>
+                <span class="skill-tag">C++</span>
+                <span class="skill-tag">SQL</span>
+            </div>
+        </section>
+
+        <section id="contacts">
+            <h3>Контакти</h3>
+            <div class="description">
+                <p><b>Email:</b> example@gmail.com</p>
+                <p><b>Телефон:</b> +38 (0XX) XXX-XX-XX</p>
+                <p><b>GitHub:</b> github.com/username</p>
+            </div>
+        </section>
+
+        <section id="languages">
+            <h3>Мови</h3>
+            <div class="description">
+                <p><b>Українська:</b> рідна</p>
+                <p><b>Англійська:</b> А2</p>
+            </div>
+        </section>
+    </div>
+</div>
+
+<footer>
+    <p>Резюме Кочетова Романа &copy; 2026</p>
+</footer>
+
+</div> <!-- кінець контейнера -->
+</body>
+</html>
