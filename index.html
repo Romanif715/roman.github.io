@@ -1,25 +1,67 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="uk">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300..900;1,300..900&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="styles/style.css">
     <title>ПОРТФОЛІО</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f2f2f2;
+            margin: 0;
+            padding: 0;
+            text-align: center;
+        }
+
+        h1 {
+            color: black; /* чорний заголовок */
+            margin-top: 20px;
+        }
+
+        #portfolio {
+            margin-top: 30px;
+        }
+
+        .portfolio-buttons {
+            margin-top: 20px;
+        }
+
+        .portfolio-buttons a {
+            display: block;
+            margin: 10px auto;
+            width: 200px;
+            padding: 10px;
+            background: #4CAF50;
+            color: white;
+            text-decoration: none;
+            border-radius: 20px; /* просте закруглення */
+        }
+
+        .portfolio-buttons a:hover {
+            background: #45a049;
+        }
+
+        p {
+            font-size: 0.9rem;
+            color: #666;
+            font-style: italic;
+        }
+    </style>
 </head>
 
 <body>
-    <div class="nav-menu">
-        <nav>
-            <h1>Лабораторні роботи</h1>
+    <h1>Лабораторні роботи</h1>
+
+    <section id="portfolio">
+        <h2>Портфоліо</h2>
+        <div class="portfolio-buttons">
             <a href="laba1/company.html">ЛАБОРАТОРНА 1</a>
             <a href="laba2/resume.html">ЛАБОРАТОРНА 2</a>
             <a href="laba3/resume.html">ЛАБОРАТОРНА 3</a>
-        </nav>
-    </div>
+        </div>
+        <p>* Натисніть на кнопку, щоб перейти до репозиторію</p>
+    </section>
 </body>
 
 </html>
