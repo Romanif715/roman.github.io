@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+<meta charset="UTF-8">
+<title>Резюме — Кочетов Роман</title>
+
+<style>
+/* ===== Виправлення відображення HTML5 елементів ===== */
+header, nav, main, section, article, aside, footer, figure {
+  display:block;
+}
+
+/* ===== Прибираємо жовтий фон у <mark> ===== */
+mark{
+  background: transparent; /* фон прозорий */
+  color: inherit;          /* колір як у тексту */
+  font-weight: 600;        /* легке виділення */
+}
+
+/* ===== Загальні стилі ===== */
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family:Segoe UI, Tahoma, sans-serif;
+}
+
+body{
+  background:#f4f6f9;
+  color:#333;
+  line-height:1.6;
+}
+
+/* ===== Контейнер сторінки ===== */
+.container{
+  max-width:1000px;
+  margin:20px auto;
+  background:#fff;
+  border-radius:8px;
+  box-shadow:0 0 15px rgba(0,0,0,0.1);
+  overflow:hidden;
+}
+
+/* ===== Шапка сайту ===== */
+header{
+  background:#2a5298;
+  color:#fff;
+  padding:30px;
+}
+
+.header-content{
+  display:flex;
+  align-items:center;
+  gap:30px;
+}
+
+/* ===== Фото профілю ===== */
+figure{
+  margin:0;
+  text-align:center;
+}
+
+.profile-photo{
+  width:140px;
+  height:140px;
+  border-radius:50%;
+  object-fit:cover;
+  border:4px solid rgba(255,255,255,0.4);
+}
+
+figcaption{
+  font-size:12px;
+  opacity:0.9;
+  margin-top:6px;
+}
+
+.name-title h1{font-size:28px;}
+.name-title h2{font-weight:400;font-size:18px;}
+
+/* ===== Навігація ===== */
+nav{
+  background:#1e3c72;
+}
+
+.nav-menu{
+  display:flex;
+  justify-content:center;
+  list-style:none;
+}
+
+.nav-menu li{margin:0 15px;}
+
+.nav-menu a{
+  display:block;
+  padding:12px 0;
+  color:#fff;
+  text-decoration:none;
+}
+
+.nav-menu a:hover{text-decoration:underline;}
+
+/* ===== Основний макет ===== */
+main{
+  display:flex;
+  padding:30px;
+  gap:30px;
+}
+
+.content{flex:3;}
+
+aside{
+  flex:2;
+  border-left:1px solid #eee;
+  padding-left:25px;
+}
+
+section{margin-bottom:30px;}
+
+h3{
+  color:#1e3c72;
+  margin-bottom:15px;
+  border-bottom:2px solid #eee;
+  padding-bottom:5px;
+}
+
+article{margin-bottom:15px;}
+
+.job-title,
+.degree-title{
+  font-weight:600;
+  color:#2a5298;
+}
+
+.period{
+  font-size:14px;
+  color:#666;
+  font-style:italic;
+  margin-bottom:8px;
+}
+
+/* ===== Навички ===== */
+.skills-list{
+  display:flex;
+  flex-wrap:wrap;
+  gap:8px;
+  list-style:none;
+}
+
+.skill-tag{
+  background:#e8edff;
+  color:#2a5298;
+  padding:6px 12px;
+  border-radius:15px;
+  font-size:14px;
+}
+
+/* ===== Кнопки портфоліо ===== */
+.portfolio-buttons{
+  display:flex;
+  flex-wrap:wrap;
+  gap:10px;
+}
+
+.btn{
+  background:#2a5298;
+  color:#fff;
+  text-decoration:none;
+  padding:8px 16px;
+  border-radius:20px;
+  font-size:14px;
+}
+
+.btn:hover{background:#1e3c72;}
+
+/* ===== Підвал ===== */
+footer{
+  text-align:center;
+  padding:15px;
+  font-size:14px;
+  color:#666;
+  border-top:1px solid #eee;
+}
+</style>
+</head>
+
+<body>
+<div class="container">
+
+<!-- ===== Шапка резюме ===== -->
+<header>
+  <div class="header-content">
+
+    <!-- Фото кандидата -->
+    <figure>
+      <img src="foto.jpg" alt="Фото Кочетова Романа" class="profile-photo">
+      <figcaption>Фото кандидата</figcaption>
+    </figure>
+
+    <!-- Ім’я та посада -->
+    <div class="name-title">
+      <h1>Кочетов Роман</h1>
+      <h2><mark>Junior Developer</mark></h2>
+    </div>
+
+  </div>
+</header>
+
+<!-- ===== Головна навігація ===== -->
+<nav aria-label="Головна навігація">
+  <ul class="nav-menu">
+    <li><a href="#about">Про мене</a></li>
+    <li><a href="#experience">Досвід</a></li>
+    <li><a href="#education">Освіта</a></li>
+    <li><a href="#skills">Навички</a></li>
+    <li><a href="#contacts">Контакти</a></li>
+  </ul>
+</nav>
+
+<!-- ===== Основний контент ===== -->
+<main>
+
+<div class="content">
+
+<!-- Про мене -->
+<section id="about">
+  <h3>Про мене</h3>
+  <p>Молодий та амбітний Junior Developer. Постійно вивчаю нові технології та розвиваюсь у сфері IT.</p>
+</section>
+
+<!-- Досвід -->
+<section id="experience">
+  <h3>Досвід роботи</h3>
+
+  <article>
+    <p class="job-title">Студент / Junior Developer</p>
+    <p>Коледж, Івано-Франківськ</p>
+    <p class="period">
+      <time datetime="2026">2026</time> — тепер
+    </p>
+    <p>Робота над навчальними проєктами, вивчення мов програмування та баз даних.</p>
+  </article>
+
+</section>
+
+<!-- Освіта -->
+<section id="education">
+  <h3>Освіта</h3>
+
+  <article>
+    <p class="degree-title">Молодший бакалавр</p>
+    <p>Комп'ютерні науки та інженерія</p>
+    <p class="period">
+      <time datetime="2024">2024</time> —
+      <time datetime="2026">2026</time>
+    </p>
+  </article>
+
+</section>
+
+</div>
+
+<!-- ===== Бічна панель ===== -->
+<aside>
+
+<section id="skills">
+  <h3>Навички</h3>
+  <ul class="skills-list">
+    <li class="skill-tag">HTML/CSS</li>
+    <li class="skill-tag">Java</li>
+    <li class="skill-tag">C++</li>
+    <li class="skill-tag">SQL</li>
+  </ul>
+</section>
+
+<section id="contacts">
+  <h3>Контакти</h3>
+  <address>
+    <p>Email: <a href="mailto:example@gmail.com">example@gmail.com</a></p>
+    <p>Телефон: <a href="tel:+380XXXXXXXXX">+38 (0XX) XXX-XX-XX</a></p>
+    <p>GitHub:
+      <a href="https://github.com/Romanif715" target="_blank" rel="noopener">
+        github.com/Romanif715
+      </a>
+    </p>
+  </address>
+</section>
+
+<section id="portfolio">
+  <h3>Портфоліо</h3>
+  <div class="portfolio-buttons">
+   <a href="laba1/company.html" class="btn" target="_blank">Лабораторна №1</a>
+        <a href="laba2/resume.html" class="btn" target="_blank">Лабораторна №2</a>
+        <a href="laba3/portfolio.html" class="btn" target="_blank">Лабораторна №3</a>
+        <a href="laba4/index.html" class="btn" target="_blank">Лабораторна №4</a>
+        <a href="laba5/task.html" class="btn" target="_blank">Лабораторна №5</a>
+        <a href="lab6/index.html" class="btn" target="_blank">Лабораторна №6</a>
+        <a href="lab7/index.html" class="btn" target="_blank">Лабораторна №7</a>
+        <a href="lab8/index.html" class="btn" target="_blank">Лабораторна №8</a>
+  </div>
+</section>
+
+</aside>
+
+</main>
+
+<!-- ===== Підвал ===== -->
+<footer>
+  <p>2026 Кочетов Роман</p>
+</footer>
+
+</div>
+</body>
+</html>

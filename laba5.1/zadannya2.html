@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Завдання 2 - Таблиця</title>
+  <style>
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      background-color: #f4f4f4;
+      padding: 40px;
+    }
+
+    h1 {
+      text-align: center;
+      color: #1e40af;
+    }
+
+    /* Таблиця через <table> */
+    table {
+      width: 100%;
+      max-width: 900px;
+      margin: 30px auto;
+      border-collapse: collapse;
+      background-color: white;
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+    }
+
+    th, td {
+      padding: 14px 12px;
+      text-align: center;
+      border: 1px solid #93c5fd;
+    }
+
+    th {
+      background-color: #60a5fa;
+      color: white;
+      font-weight: bold;
+    }
+
+    tr:nth-child(even) {
+      background-color: #dbeafe;
+    }
+
+    tr:nth-child(odd) {
+      background-color: #bfdbfe;
+    }
+
+    td:first-child {
+      text-align: left;
+      font-weight: bold;
+      background-color: #eff6ff;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Завдання 2 — Таблиця (варіант з &lt;table&gt;)</h1>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Company</th>
+        <th>Q1</th>
+        <th>Q2</th>
+        <th>Q3</th>
+        <th>Q4</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Microsoft</td>
+        <td>20.3</td>
+        <td>30.5</td>
+        <td>23.5</td>
+        <td>40.3</td>
+      </tr>
+      <tr>
+        <td>Google</td>
+        <td>50.2</td>
+        <td>40.63</td>
+        <td>45.23</td>
+        <td>39.3</td>
+      </tr>
+      <tr>
+        <td>Apple</td>
+        <td>25.4</td>
+        <td>30.2</td>
+        <td>33.3</td>
+        <td>36.7</td>
+      </tr>
+      <tr>
+        <td>IBM</td>
+        <td>20.4</td>
+        <td>15.6</td>
+        <td>22.3</td>
+        <td>29.3</td>
+      </tr>
+    </tbody>
+  </table>
+
+</body>
+</html>

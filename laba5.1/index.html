@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Завдання 0 - Pricing Card</title>
+  <style>
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      background-color: #f4f4f4;
+      padding: 50px;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+    }
+
+    .pricing-card {
+      width: 300px;
+      border: 3px solid #10b981;
+      border-radius: 15px;
+      overflow: hidden;
+      box-shadow: 0 15px 25px rgba(0, 0, 0, 0.15);
+      background-color: white;
+      text-align: center;
+    }
+
+    .header {
+      background-color: #10b981;
+      color: white;
+      padding: 25px 0;
+      font-size: 28px;
+      font-weight: bold;
+    }
+
+    .price {
+      background-color: #10b981;
+      color: white;
+      font-size: 48px;
+      font-weight: bold;
+      padding: 20px 0;
+      margin: 0;
+    }
+
+    .option {
+      padding: 18px 20px;
+      border-bottom: 1px solid #e5e7eb;
+      background-color: #f9fafb;
+      font-size: 17px;
+      color: #374151;
+    }
+
+    .option:last-child {
+      border-bottom: none;
+    }
+
+    .purchase-btn {
+      display: block;
+      width: 85%;
+      margin: 30px auto;
+      padding: 16px;
+      background-color: #10b981;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      font-size: 18px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    .purchase-btn:hover {
+      background-color: #059669;
+      transform: scale(1.05);
+    }
+  </style>
+</head>
+<body>
+
+  <div class="pricing-card">
+    <div class="header">Basic</div>
+    <h2 class="price">$99</h2>
+    
+    <div class="option">Option</div>
+    <div class="option">Option</div>
+    <div class="option">Option</div>
+    <div class="option">Option</div>
+    <div class="option">Option</div>
+    
+    <button class="purchase-btn">Purchase</button>
+  </div>
+
+</body>
+</html>

@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Контактна форма</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+</head>
+<body>
+    <div class="main-container">
+        <!-- Ліва частина -->
+        <div class="left-side">
+            <h1>Contact Form</h1>
+            <h2>Beautiful UI Kit</h2>
+            
+            <ul class="features">
+                <li><i class="fas fa-check"></i> Чистий та сучасний дизайн</li>
+                <li><i class="fas fa-check"></i> Мобільна та десктопна версія</li>
+                <li><i class="fas fa-check"></i> Інтерактивний прототип</li>
+            </ul>
+
+            <div class="bottom-logos">
+                <button class="ui-kit-btn">
+                    <i class="fab fa-figma"></i> UI-Kit
+                </button>
+                <div class="figma-logo">
+                    <i class="fab fa-figma"></i>
+                </div>
+            </div>
+        </div>
+
+        <!-- Права частина (форма) -->
+        <div class="right-side">
+            <div class="form-card">
+                <h3>Зв'яжіться з нами</h3>
+                <p class="subtitle">Маєте питання чи зауваження? Просто напишіть нам повідомлення.</p>
+
+                <div class="form-content">
+                    <!-- Контактна інформація -->
+                    <div class="contact-info">
+                        <h4>Контактна інформація</h4>
+                        <p class="info-subtitle">Напишіть щось, щоб почати живий чат!</p>
+                        
+                        <div class="info-item">
+                            <i class="fas fa-phone"></i>
+                            <p>+102 3456 789</p>
+                        </div>
+                        <div class="info-item">
+                            <i class="fas fa-envelope"></i>
+                            <p>demo@gmail.com</p>
+                        </div>
+                        <div class="info-item">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <p>123 Dartmouth Street Boston,<br>Massachusetts 02255, США</p>
+                        </div>
+
+                        <div class="social-icons">
+                            <i class="fab fa-twitter"></i>
+                            <i class="fab fa-instagram"></i>
+                            <i class="fab fa-discord"></i>
+                        </div>
+                    </div>
+
+                    <!-- Форма -->
+                    <form class="contact-form">
+                        <div class="name-row">
+                            <div class="input-group">
+                                <label>Ім'я</label>
+                                <input type="text" placeholder="Ваше ім'я" required>
+                            </div>
+                            <div class="input-group">
+                                <label>Прізвище</label>
+                                <input type="text" placeholder="Ваше прізвище" required>
+                            </div>
+                        </div>
+
+                        <div class="input-group">
+                            <label>Email</label>
+                            <input type="email" placeholder="example@gmail.com" required>
+                        </div>
+
+                        <div class="input-group">
+                            <label>Оберіть тему</label>
+                            <select required>
+                                <option value="">Оберіть тему</option>
+                                <option>Загальне питання</option>
+                                <option>Технічна підтримка</option>
+                                <option>Відгук</option>
+                                <option>Співпраця</option>
+                            </select>
+                        </div>
+
+                        <div class="input-group">
+                            <label>Повідомлення</label>
+                            <textarea rows="5" placeholder="Напишіть ваше повідомлення..." required></textarea>
+                        </div>
+
+                        <button type="submit" class="submit-btn">Надіслати повідомлення</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

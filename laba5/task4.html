@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+<meta charset="UTF-8">
+<title>Завдання 4</title>
+<style>
+.battery {
+  width: 200px;
+  height: 50px;
+  border: 4px solid black;
+  position: relative;
+  margin: 20px;
+}
+
+/* Контакт батареї */
+.battery::after {
+  content: "";
+  position: absolute;
+  top: 12px;
+  right: -12px;
+  width: 12px;
+  height: 26px;
+  background: black;
+}
+
+/* Заповнення батареї (кольори змінюються) */
+.battery.red::before,
+.battery.yellow::before,
+.battery.green::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+}
+
+/* Різний рівень заповнення */
+.battery.red::before {
+  width: 40%;
+  background: red;
+}
+.battery.yellow::before {
+  width: 60%;
+  background: yellow;
+}
+.battery.green::before {
+  width: 90%;
+  background: green;
+}
+</style>
+</head>
+<body>
+
+<div class="battery red"></div>
+<div class="battery yellow"></div>
+<div class="battery green"></div>
+
+</body>
+</html>

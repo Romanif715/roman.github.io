@@ -1,0 +1,211 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', system-ui, sans-serif;
+    background: #0f172a;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+}
+
+.main-container {
+    max-width: 1200px;
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr 1.35fr;
+    background: white;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 25px 50px -12px rgb(0 0 0 / 0.4);
+}
+
+.left-side {
+    background: #0f172a;
+    color: white;
+    padding: 80px 60px;
+    display: flex;
+    flex-direction: column;
+}
+
+.left-side h1 {
+    font-size: 3.2rem;
+    margin-bottom: 8px;
+}
+
+.left-side h2 {
+    font-size: 2.4rem;
+    color: #facc15;
+    margin-bottom: 50px;
+}
+
+.features {
+    list-style: none;
+    margin-bottom: auto;
+}
+
+.features li {
+    font-size: 1.25rem;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.bottom-logos {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.ui-kit-btn {
+    background: #facc15;
+    color: #0f172a;
+    border: none;
+    padding: 14px 28px;
+    border-radius: 50px;
+    font-weight: bold;
+    font-size: 1.1rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.figma-logo {
+    width: 55px;
+    height: 55px;
+    background: white;
+    color: #0f172a;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.8rem;
+}
+
+/* Права частина */
+.right-side {
+    padding: 60px;
+    background: white;
+}
+
+.form-card h3 {
+    font-size: 2rem;
+    margin-bottom: 8px;
+}
+
+.subtitle {
+    color: #64748b;
+    margin-bottom: 40px;
+}
+
+.form-content {
+    display: grid;
+    grid-template-columns: 1fr 1.1fr;
+    gap: 60px;
+}
+
+.contact-info {
+    background: #0f172a;
+    color: white;
+    padding: 40px 35px;
+    border-radius: 16px;
+    height: fit-content;
+}
+
+.contact-info h4 {
+    font-size: 1.4rem;
+    margin-bottom: 8px;
+}
+
+.info-subtitle {
+    opacity: 0.8;
+    margin-bottom: 30px;
+}
+
+.info-item {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 22px;
+    font-size: 1.05rem;
+}
+
+.social-icons {
+    margin-top: 30px;
+    display: flex;
+    gap: 20px;
+    font-size: 1.5rem;
+}
+
+/* Форма */
+.contact-form {
+    flex: 1;
+}
+
+.input-group {
+    margin-bottom: 25px;
+}
+
+.input-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 600;
+    color: #334155;
+}
+
+.input-group input,
+.input-group select,
+.input-group textarea {
+    width: 100%;
+    padding: 14px 18px;
+    border: 2px solid #e2e8f0;
+    border-radius: 10px;
+    font-size: 1rem;
+}
+
+.input-group input:focus,
+.input-group select:focus,
+.input-group textarea:focus {
+    outline: none;
+    border-color: #6366f1;
+}
+
+.name-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+}
+
+.submit-btn {
+    background: #6366f1;
+    color: white;
+    border: none;
+    padding: 16px 40px;
+    border-radius: 10px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    cursor: pointer;
+    margin-top: 10px;
+    transition: 0.3s;
+}
+
+.submit-btn:hover {
+    background: #4f46e5;
+    transform: translateY(-2px);
+}
+
+/* Адаптив */
+@media (max-width: 992px) {
+    .main-container {
+        grid-template-columns: 1fr;
+    }
+    .form-content {
+        grid-template-columns: 1fr;
+    }
+}
