@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8">
+  <title>Практична робота</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <h2>Перевірка номера у журналі</h2>
+  <button onclick="checkNumber()">Перевірити парність</button>
+  <p id="result"></p>
+
+  <h2>Генерація паролю</h2>
+  <button onclick="generatePassword()">Створити пароль</button>
+  <div id="password"></div>
+
+  <h2>Середнє значення оцінок</h2>
+  <button onclick="calculateAverage()">Обчислити середнє</button>
+  <!-- div з id буде створено динамічно -->
+
+  <h2>Список студентів</h2>
+  <button onclick="studentsList()">Ввести студентів</button>
+  <div id="students"></div>
+
+  <script>
+    const journalNumber = 15; // твій номер у журналі
+    const name = "Роман";    // твоє ім’я
+
+    // 1) Перевірка парності
+    function checkNumber() {
+      const result = document.getElementById("result");
+      if (journalNumber % 2 === 0) {
+        result.textContent = journalNumber + " — парне число";
+        result.className = "even";
+      } else {
+        result.textContent = journalNumber + " — непарне число";
+        result.className = "odd";
+      }
+    }
+
+    // 2) Генерація паролю
+    function generatePassword() {
+      const password = name.substring(0,3) + (journalNumber * 2);
+      document.getElementById("password").textContent = "Ваш пароль: " + password;
+    }
+
+    // 3) Середнє значення оцінок
+    function calculateAverage() {
+      let grades = [];
+      for (let i = 1; i <= 3; i++) {
+        grades.push(parseFloat(prompt("Введіть оцінку " + i)));
+      }
+      const avg = (grades[0] + grades[1] + grades[2]) / 3;
+
+      const div = document.createElement("div");
+      div.id = journalNumber; // id = номер у журналі
+      div.textContent = "Середнє значення: " + avg.toFixed(2);
+      document.body.appendChild(div);
+    }
+
+    // 4) Список студентів
+    function studentsList() {
+      const count = parseInt(prompt("Кількість студентів у групі:"));
+      const container = document.getElementById("students");
+      container.innerHTML = "";
+      for (let i = 1; i <= count; i++) {
+        const student = prompt("Введіть прізвище та ім’я студента " + i + ":");
+        const p = document.createElement("p");
+        p.textContent = student;
+        container.appendChild(p);
+      }
+    }
+  </script>
+</body>
+</html>
