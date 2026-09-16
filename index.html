@@ -4,86 +4,192 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ПОРТФОЛІО</title>
+    <title>Kochetov Roman</title>
     <style>
+        * {
+            box-sizing: border-box;
+        }
+
         body {
-            font-family: Arial, sans-serif;
-            background: #f2f2f2;
+            font-family: 'Segoe UI', Tahoma, Arial, sans-serif;
+            background: linear-gradient(135deg, #eef2ff 0%, #e0f7fa 50%, #fce4ec 100%);
             margin: 0;
-            padding: 0;
+            padding: 30px 20px 60px;
+            color: #2c3e50;
             text-align: center;
+            min-height: 100vh;
         }
 
         h1 {
-            color: black;
-            margin-top: 20px;
+            color: #1f2a44;
+            margin: 0 0 8px;
+            font-size: 1.8rem;
+            letter-spacing: 0.5px;
         }
 
-        #portfolio {
-            margin-top: 30px;
+        .subtitle {
+            color: #6a7a99;
+            font-size: 1rem;
+            margin-bottom: 30px;
         }
 
+        /* ===== Заголовок курсу ===== */
+        .course-title {
+            margin: 40px auto 16px;
+            max-width: 720px;
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: #34495e;
+            padding-bottom: 8px;
+            border-bottom: 2px solid transparent;
+            border-image: linear-gradient(90deg, #6a8dff, #a06bff, transparent) 1;
+            text-align: left;
+        }
+
+        .course-title:first-of-type {
+            margin-top: 0;
+        }
+
+        /* ===== Контейнер з кнопками ===== */
         .portfolio-buttons {
-            margin-top: 20px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 14px;
+            max-width: 720px;
+            margin: 0 auto;
         }
 
         .portfolio-buttons a {
             display: block;
-            margin: 10px auto;
-            width: 250px;
-            padding: 10px;
-            background: #4CAF50;
-            color: white;
+            padding: 14px 18px;
+            background: #ffffff;
+            color: #2c3e50;
             text-decoration: none;
-            border-radius: 20px;
+            border-radius: 12px;
+            font-weight: 600;
+            font-size: 0.95rem;
+            border-left: 5px solid #6a8dff;
+            box-shadow: 0 3px 10px rgba(106, 141, 255, 0.15);
+            transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+            text-align: left;
         }
 
         .portfolio-buttons a:hover {
-            background: #45a049;
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(106, 141, 255, 0.3);
+            border-left-color: #a06bff;
         }
 
-        p {
-            font-size: 0.9rem;
-            color: #888;
+        /* ===== Кольорові акценти для різних курсів ===== */
+        .course-3 .portfolio-buttons a {
+            border-left-color: #48b1a0;
+        }
+
+        .course-3 .portfolio-buttons a:hover {
+            border-left-color: #1b8a5a;
+            box-shadow: 0 8px 20px rgba(72, 177, 160, 0.3);
+        }
+
+        .course-4 .portfolio-buttons a {
+            border-left-color: #a06bff;
+        }
+
+        .course-4 .portfolio-buttons a:hover {
+            border-left-color: #6a8dff;
+            box-shadow: 0 8px 20px rgba(160, 107, 255, 0.3);
+        }
+
+        /* ===== Порожній стан ===== */
+        .empty-note {
+            max-width: 720px;
+            margin: 0 auto;
+            padding: 20px;
+            background: #ffffff;
+            border: 2px dashed #c9d3e8;
+            border-radius: 12px;
+            color: #8894ad;
             font-style: italic;
+            font-size: 0.9rem;
+        }
+
+        /* ===== Підпис ===== */
+        .footer {
+            margin-top: 50px;
+            font-size: 0.85rem;
+            color: #8894ad;
+            font-style: italic;
+        }
+
+        /* ===== Адаптивність ===== */
+        @media (max-width: 600px) {
+            h1 {
+                font-size: 1.3rem;
+            }
+
+            .portfolio-buttons {
+                grid-template-columns: 1fr;
+            }
+
+            .course-title {
+                font-size: 1.05rem;
+            }
         }
     </style>
 </head>
 
 <body>
-    <h1>Лабораторні роботи Kochetov Roman №15</h1>
-    <section id="portfolio">
+    <h1>Лабораторні роботи — Kochetov Roman</h1>
+    <p class="subtitle">Номер у журналі: №15</p>
+
+    <!-- ===================== 4 КУРС ===================== -->
+    <h2 class="course-title">4 курс</h2>
+    <section class="course-4">
         <div class="portfolio-buttons">
-            <a href="laba1/company.html" target="_blank">ЛР №1</a>
-            <a href="laba2/resume.html" target="_blank">ЛР №2</a>
-            <a href="laba3/portfolio.html" target="_blank">ЛР №3</a>
-            <!-- Лабораторна №4 -->
-            <a href="laba4/task_lemon/index.html" target="_blank">ЛР №4 (Лимон)</a>
-            <a href="laba4/task_mriya/cossacs.html" target="_blank">ЛР №4 (Мрія)</a>
-            <!-- Лабораторна №5 -->
-            <a href="laba5/task1.html" target="_blank">ЛР №5 Завд.1</a>
-            <a href="laba5/task2.html" target="_blank">ЛР №5 Завд.2</a>
-            <a href="laba5/task3.html" target="_blank">ЛР №5 Завд.3</a>
-            <a href="laba5/task4.html" target="_blank">ЛР №5 Завд.4</a>
-            <a href="laba5/task5.html" target="_blank">ЛР №5 Завд.5</a>
-            <!-- Лабораторна №5.1 -->
-            <a href="laba5.1/index.html" target="_blank">ЛР №5.1 Завд.0</a>
-            <a href="laba5.1/zadannya2.html" target="_blank">ЛР №5.1 Завд.1</a>
-            <!-- Лабораторна №6 -->
-            <a href="laba6/burger.html" target="_blank">ЛР №6 Завд.5_menu_burger</a>
-             <!-- Лабораторна №7 -->
-             <a href="laba7/index.html" target="_blank">ЛР №7 Онлайн замовлення</a>
-             <!-- Лабораторна №8 -->
-             <a href="laba8/index.html" target="_blank">ЛР №8 ( не зробив ))</a>
-            <!-- Лабораторна №9 -->
-             <a href="laba9/index.html" target="_blank">ЛР №9 Створення блогу</a>
-            <!-- Лабораторна №10 -->
-            <a href="laba10/landing-page/index.html" target="_blank">ЛР №10 (Landing Page)</a>
-            <a href="laba10/mobile-first/index.html" target="_blank">ЛР №10 (Mobile First)</a>
-            <!-- Лабораторна №11 -->
-            <a href="laba11/praktuchna-forma/index.html" target="_blank">ЛР №11 (praktuchna-forma)</a>
+            <!-- Додавай сюди нові лабораторні 4 курсу -->
+            <a href="laba1/index.html" target="_blank">ЛР №1 (4 курс)</a>
+            <a href="laba2/index.html" target="_blank">ЛР №2 (4 курс)</a>
+            <!-- Приклад:
+            <a href="laba3/index.html" target="_blank">ЛР №3</a>
+            -->
         </div>
     </section>
+
+    <!-- ===================== 3 КУРС ===================== -->
+    <h2 class="course-title">3 курс</h2>
+    <section class="course-3">
+        <div class="portfolio-buttons">
+            <a href="laba1/company.html" target="_blank">ЛР №1 — Company</a>
+            <a href="laba2/resume.html" target="_blank">ЛР №2 — Resume</a>
+            <a href="laba3/portfolio.html" target="_blank">ЛР №3 — Portfolio</a>
+
+            <a href="laba4/task_lemon/index.html" target="_blank">ЛР №4 — Лимон</a>
+            <a href="laba4/task_mriya/cossacs.html" target="_blank">ЛР №4 — Мрія</a>
+
+            <a href="laba5/task1.html" target="_blank">ЛР №5 — Завд. 1</a>
+            <a href="laba5/task2.html" target="_blank">ЛР №5 — Завд. 2</a>
+            <a href="laba5/task3.html" target="_blank">ЛР №5 — Завд. 3</a>
+            <a href="laba5/task4.html" target="_blank">ЛР №5 — Завд. 4</a>
+            <a href="laba5/task5.html" target="_blank">ЛР №5 — Завд. 5</a>
+
+            <a href="laba5.1/index.html" target="_blank">ЛР №5.1 — Завд. 0</a>
+            <a href="laba5.1/zadannya2.html" target="_blank">ЛР №5.1 — Завд. 1</a>
+
+            <a href="laba6/burger.html" target="_blank">ЛР №6 — Меню-бургер</a>
+
+            <a href="laba7/index.html" target="_blank">ЛР №7 — Онлайн-замовлення</a>
+
+            <a href="laba8/index.html" target="_blank">ЛР №8</a>
+
+            <a href="laba9/index.html" target="_blank">ЛР №9 — Блог</a>
+
+            <a href="laba10/landing-page/index.html" target="_blank">ЛР №10 — Landing Page</a>
+            <a href="laba10/mobile-first/index.html" target="_blank">ЛР №10 — Mobile First</a>
+
+            <a href="laba11/praktuchna-forma/index.html" target="_blank">ЛР №11 — Практична форма</a>
+        </div>
+    </section>
+
+    <p class="footer">© Kochetov Roman, 2025-2026</p>
 </body>
 
 </html>
