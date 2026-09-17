@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <title>Лабораторна робота</title>
+</head>
+<body>
+    <h1>Відкрий консоль (F12 → Console)</h1>
+
+    <script>
+        // ============================================
+        // Завдання 1. Область видимості та hoisting
+        // ============================================
+        console.log("=== Завдання 1: Область видимості ===");
+
+        var userName = "Олександр";
+
+        if (true) {
+            var userName = prompt("Завдання 1. Введіть інше ім'я:");
+            console.log("Всередині блоку if:", userName);
+        }
+
+        console.log("Ззовні блоку if:", userName);
+
+
+        // ============================================
+        // Завдання 2. Confirm та розгалуження
+        // ============================================
+        console.log("\n=== Завдання 2: Confirm ===");
+
+        let name = prompt("Завдання 2. Введіть ваше ім'я:");
+        let age = prompt("Завдання 2. Введіть ваш вік:");
+
+        let answer = confirm(`Hello, ${name}! Your age is ${age}. Continue?`);
+
+        if (answer) {
+            alert("Welcome!");
+        } else {
+            alert("Goodbye!");
+        }
+
+
+        // ============================================
+        // Завдання 3. Перевірка парності
+        // ============================================
+        console.log("\n=== Завдання 3: Парність числа ===");
+
+        let number = Number(prompt("Завдання 3. Введіть число:"));
+
+        if (number % 2 === 0) {
+            alert("Number is even");
+        } else {
+            alert("Number is odd");
+        }
+    </script>
+</body>
+</html>
