@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8">
+  <title>Функції в JavaScript</title>
+</head>
+<body>
+  <h2>Відкрий консоль (F12) і дивись результат</h2>
+
+  <script>
+    // ===== Завдання 1 =====
+    function startGreetingTimer(message, seconds, callback) {
+      setTimeout(() => {
+        console.log(message);
+        callback();
+      }, seconds * 1000);
+    }
+
+    startGreetingTimer("Привіт!", 3, () => {
+      alert('Time is up!');
+    });
+
+
+    // ===== Завдання 2 =====
+    function calculate(a, b, operation) {
+      if (operation === '+') {
+        return a + b;
+      } else if (operation === '-') {
+        return a - b;
+      } else if (operation === '*') {
+        return a * b;
+      } else if (operation === '/') {
+        return a / b;
+      } else {
+        return 'Invalid operation';
+      }
+    }
+
+    function showResult() {
+      let a = Number(prompt("Введіть перше число:"));
+      let b = Number(prompt("Введіть друге число:"));
+      let operation = prompt("Введіть операцію (+, -, *, /):");
+
+      let result = calculate(a, b, operation);
+      alert(result);
+    }
+
+    // Можна розкоментувати, щоб одразу запускати:
+    // showResult();
+
+
+    // ===== Завдання 3 =====
+    function createClickCounter() {
+      let count = 0;
+
+      return function() {
+        count = count + 1;
+        console.log(count);
+      };
+    }
+
+    let counter = createClickCounter();
+    counter(); // 1
+    counter(); // 2
+    counter(); // 3
+  </script>
+</body>
+</html>
