@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <title>Розклад зустрічей + Базові об'єкти книг</title>
+</head>
+<body>
+    <h1>Розклад зустрічей + Базові об'єкти книг</h1>
+    <p>Результати дивіться у консолі (F12 → Console)</p>
+
+    <script>
+// ============ Базові об'єкти книг ============
+const book1 = {
+    title: "Кобзар",
+    author: "Тарас Шевченко",
+    year: 1840,
+    isRead: false
+};
+
+const book2 = {
+    title: "Місто",
+    author: "Валер'ян Підмогильний",
+    year: 1928,
+    isRead: true
+};
+
+const book3 = {
+    title: "Тіні забутих предків",
+    author: "Михайло Коцюбинський",
+    year: 1911,
+    isRead: false
+};
+
+// Масив книг
+const library = [book1, book2, book3];
+
+// ============ Додаткове завдання 1: метод markAsRead ============
+// Додаємо метод до кожного об'єкта книги
+function addMarkAsRead(book) {
+    book.markAsRead = function () {
+        this.isRead = true;
+        return `${this.title} — позначено як прочитану`;
+    };
+}
+
+library.forEach(addMarkAsRead);
+
+// Демонстрація
+console.log(book1.markAsRead()); // "Кобзар — позначено як прочитану"
+console.log(book1.isRead);        // true
+
+// ============ Додаткове завдання 2: calculateAverageYear ============
+function calculateAverageYear(books) {
+    if (!books || books.length === 0) return 0;
+    const total = books.reduce((sum, book) => sum + book.year, 0);
+    return total / books.length;
+}
+
+console.log("Середній рік видання:", calculateAverageYear(library));
+// (1840 + 1928 + 1911) / 3 = 1893
+
+// ============ Додаткові операції з масивом ============
+// Фільтрація прочитаних книг
+const readBooks = library.filter(b => b.isRead);
+console.log("Прочитані книги:", readBooks.map(b => b.title));
+
+// Сортування за роком
+const sortedByYear = [...library].sort((a, b) => a.year - b.year);
+console.log("Відсортовано за роком:", sortedByYear.map(b => `${b.title} (${b.year})`));
+
+
+
+
+     // ============ Інд.завдання №15: Розклад зустрічей ============
+
+const meeting1 = {
+    topic: "Планування спринту",
+    date: "2025-01-15",
+    time: "10:00",
+    place: "Офіс, кімната 3",
+    isHeld: true
+};
+
+const meeting2 = {
+    topic: "Зустріч з клієнтом",
+    date: "2025-01-20",
+    time: "14:30",
+    place: "Zoom",
+    isHeld: false
+};
+
+const meeting3 = {
+    topic: "Ретроспектива",
+    date: "2025-02-01",
+    time: "16:00",
+    place: "Офіс, кімната 1",
+    isHeld: false
+};
+
+const meeting4 = {
+    topic: "Технічний семінар",
+    date: "2025-01-10",
+    time: "09:00",
+    place: "Конференц-зал",
+    isHeld: true
+};
+
+// Масив зустрічей — розклад
+const schedule = [meeting1, meeting2, meeting3, meeting4];
+
+// ============ Метод markAsHeld ============
+// Аналогічно до markAsRead — позначає зустріч як проведену
+function addMarkAsHeld(meeting) {
+    meeting.markAsHeld = function () {
+        this.isHeld = true;
+        return `Зустріч "${this.topic}" позначена як проведена`;
+    };
+}
+
+schedule.forEach(addMarkAsHeld);
+
+// Демонстрація
+console.log(meeting2.markAsHeld());
+console.log(meeting2.isHeld); // true
+
+// ============ Функція розрахунку середнього ============
+// Обчислює середній час початку зустрічей (у хвилинах від початку доби)
+function calculateAverageTime(meetings) {
+    if (!meetings || meetings.length === 0) return "—";
+    const totalMinutes = meetings.reduce((sum, m) => {
+        const [h, min] = m.time.split(":").map(Number);
+        return sum + h * 60 + min;
+    }, 0);
+    const avg = Math.round(totalMinutes / meetings.length);
+    const hours = String(Math.floor(avg / 60)).padStart(2, "0");
+    const minutes = String(avg % 60).padStart(2, "0");
+    return `${hours}:${minutes}`;
+}
+
+console.log("Середній час початку:", calculateAverageTime(schedule));
+
+// ============ Додаткові операції ============
+
+// 1. Отримати список проведених зустрічей
+const heldMeetings = schedule.filter(m => m.isHeld);
+console.log("\nПроведені зустрічі:");
+heldMeetings.forEach(m => console.log(` • ${m.topic} (${m.date})`));
+
+// 2. Отримати список майбутніх зустрічей
+const upcomingMeetings = schedule.filter(m => !m.isHeld);
+console.log("\nМайбутні зустрічі:");
+upcomingMeetings.forEach(m => console.log(` • ${m.topic} — ${m.date} о ${m.time}`));
+
+// 3. Сортування за датою та часом
+const sortedSchedule = [...schedule].sort((a, b) => {
+    const dtA = new Date(`${a.date}T${a.time}`);
+    const dtB = new Date(`${b.date}T${b.time}`);
+    return dtA - dtB;
+});
+console.log("\nРозклад у хронологічному порядку:");
+sortedSchedule.forEach(m =>
+    console.log(` • ${m.date} ${m.time} — ${m.topic} [${m.place}]`)
+);
+
+// 4. Групування за місцем проведення
+function groupByPlace(meetings) {
+    return meetings.reduce((acc, m) => {
+        if (!acc[m.place]) acc[m.place] = [];
+        acc[m.place].push(m.topic);
+        return acc;
+    }, {});
+}
+console.log("\nЗустрічі за місцем:");
+console.log(groupByPlace(schedule));
+
+// 5. Пошук зустрічі за темою
+function findByTopic(meetings, keyword) {
+    return meetings.filter(m =>
+        m.topic.toLowerCase().includes(keyword.toLowerCase())
+    );
+}
+console.log("\nПошук 'зустріч':", findByTopic(schedule, "зустріч"));
+
+// 6. Статистика
+function getStatistics(meetings) {
+    const total = meetings.length;
+    const held = meetings.filter(m => m.isHeld).length;
+    const upcoming = total - held;
+    const places = new Set(meetings.map(m => m.place)).size;
+    return { total, held, upcoming, places };
+}
+console.log("\nСтатистика:", getStatistics(schedule));
+
+// 7. Додавання нової зустрічі
+function addMeeting(schedule, topic, date, time, place) {
+    const newMeeting = { topic, date, time, place, isHeld: false };
+    addMarkAsHeld(newMeeting);
+    schedule.push(newMeeting);
+    return newMeeting;
+}
+
+addMeeting(schedule, "Огляд коду", "2025-02-10", "11:00", "Zoom");
+console.log("\nПісля додавання нової зустрічі, всього:", schedule.length);
+    </script>
+</body>
+</html>
