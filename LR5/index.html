@@ -1,0 +1,617 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Лабораторна робота №7 — Варіант 15 (Клавіатури)</title>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            background: #f5f7fa;
+            color: #222;
+            line-height: 1.5;
+        }
+        h1 {
+            text-align: center;
+            color: #1a365d;
+            margin-bottom: 10px;
+        }
+        h2 {
+            color: #2c5282;
+            border-bottom: 2px solid #4299e1;
+            padding-bottom: 6px;
+            margin-top: 40px;
+        }
+        .task {
+            background: #fff;
+            border-radius: 10px;
+            padding: 20px 24px;
+            margin-bottom: 24px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+        }
+        label {
+            display: inline-block;
+            min-width: 200px;
+            margin-right: 8px;
+        }
+        input[type="text"], input[type="number"] {
+            padding: 6px 10px;
+            border: 1px solid #cbd5e0;
+            border-radius: 4px;
+            font-size: 16px;
+            width: 140px;
+        }
+        button, .btn {
+            padding: 7px 16px;
+            background: #4299e1;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 14px;
+            margin: 4px 4px 4px 0;
+        }
+        button:hover, .btn:hover {
+            background: #3182ce;
+        }
+        button:disabled {
+            background: #a0aec0;
+            cursor: not-allowed;
+        }
+        .score {
+            font-weight: bold;
+            font-size: 18px;
+            margin-bottom: 12px;
+        }
+        .result {
+            margin-top: 10px;
+            font-weight: bold;
+        }
+        .result.error {
+            color: #e53e3e;
+        }
+        .result.success {
+            color: #38a169;
+        }
+        /* Photo rotator */
+        #rotator {
+            max-width: 640px;
+            margin: 0 auto;
+            text-align: center;
+            min-height: 480px; /* prevent jumps */
+        }
+        #rotator .counter {
+            font-weight: bold;
+            margin-bottom: 8px;
+            color: #2d3748;
+        }
+        #rotator .img-wrap {
+            position: relative;
+            width: 100%;
+            height: 360px;
+            background: #edf2f7;
+            border: 1px solid #cbd5e0;
+            border-radius: 6px;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        #rotator img {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+            display: block;
+        }
+        #rotator .nav {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 10px;
+            min-height: 28px;
+        }
+        #rotator .nav a {
+            color: #3182ce;
+            text-decoration: none;
+            font-weight: 500;
+            cursor: pointer;
+            padding: 4px 12px;
+        }
+        #rotator .nav a:hover {
+            text-decoration: underline;
+        }
+        #rotator .nav a.hidden {
+            visibility: hidden;
+            pointer-events: none;
+        }
+        #rotator .title {
+            font-weight: bold;
+            margin-top: 12px;
+            font-size: 18px;
+        }
+        #rotator .desc {
+            color: #4a5568;
+            margin-top: 4px;
+        }
+        /* CAPTCHA */
+        .captcha-digits {
+            display: inline-flex;
+            gap: 4px;
+            margin: 12px 0;
+            padding: 8px 12px;
+            background: #edf2f7;
+            border: 2px solid #a0aec0;
+            border-radius: 4px;
+            user-select: none;
+        }
+        .captcha-digits .digit {
+            display: inline-block;
+            width: 28px;
+            height: 36px;
+            font-size: 28px;
+            font-weight: bold;
+            line-height: 36px;
+            text-align: center;
+            color: #1a202c;
+            /* pixel-like effect via font + slight random transform in JS */
+            font-family: 'Courier New', monospace;
+            background: linear-gradient(135deg, #e2e8f0 25%, transparent 25%),
+                        linear-gradient(225deg, #e2e8f0 25%, transparent 25%),
+                        linear-gradient(45deg, #e2e8f0 25%, transparent 25%),
+                        linear-gradient(315deg, #e2e8f0 25%, transparent 25%);
+            background-size: 6px 6px;
+            background-position: 0 0, 0 3px, 3px -3px, -3px 0;
+        }
+        .captcha-result {
+            margin-top: 8px;
+            font-weight: bold;
+            min-height: 24px;
+        }
+        .radio-group label {
+            display: block;
+            min-width: auto;
+            margin: 4px 0;
+            cursor: pointer;
+        }
+        .radio-group input {
+            margin-right: 8px;
+        }
+        .question {
+            font-size: 20px;
+            font-weight: bold;
+            margin: 12px 0;
+        }
+    </style>
+</head>
+<body>
+    <h1>Лабораторна робота №5</h1>
+    Варіант 15 — Клавіатури</p>
+
+    <!-- ========== ЗАВДАННЯ 1 ========== -->
+    <div class="task">
+        <h2>1. Конвертер температури (°F ↔ °C)</h2>
+        <div>
+            <label for="fahrenheit">Температура за Фаренгейтом</label>
+            <input type="text" id="fahrenheit" value="">
+        </div>
+        <div style="margin-top:10px;">
+            <label for="celsius">Температура за Цельсієм</label>
+            <input type="text" id="celsius" value="">
+        </div>
+    </div>
+
+    <!-- ========== ЗАВДАННЯ 2 ========== -->
+    <div class="task">
+        <h2>2. Таблиця множення (текстове поле)</h2>
+        <div class="score" id="score2">Загальний рахунок: 0% (0 правильних відповідей з 0)</div>
+        <button id="nextBtn2">наступне завдання</button>
+        <div class="question" id="question2">—</div>
+        <div>
+            <input type="text" id="answer2" placeholder="відповідь">
+            <button id="checkBtn2">перевірити</button>
+        </div>
+        <div class="result" id="result2"></div>
+    </div>
+
+    <!-- ========== ЗАВДАННЯ 3 ========== -->
+    <div class="task">
+        <h2>3. Таблиця множення (радіокнопки)</h2>
+        <div class="score" id="score3">Загальний рахунок: 0% (0 правильних відповідей з 0)</div>
+        <button id="nextBtn3">наступне завдання</button>
+        <div class="question" id="question3">—</div>
+        <div class="radio-group" id="options3"></div>
+        <div class="result" id="result3"></div>
+    </div>
+
+    <!-- ========== ЗАВДАННЯ 4 ========== -->
+    <div class="task">
+        <h2>4. Ротатор зображень (Клавіатури)</h2>
+        <div id="rotator"></div>
+    </div>
+
+    <!-- ========== ЗАВДАННЯ 5 ========== -->
+    <div class="task">
+        <h2>5. CAPTCHA</h2>
+        <div id="captchaContainer"></div>
+    </div>
+
+    <script>
+        // ==================== ЗАВДАННЯ 1 ====================
+        (function() {
+            const fInput = document.getElementById('fahrenheit');
+            const cInput = document.getElementById('celsius');
+            let lock = false; // prevent recursive updates
+
+            function fToC(f) {
+                return (5 / 9) * (f - 32);
+            }
+            function cToF(c) {
+                return (9 / 5) * c + 32;
+            }
+
+            fInput.addEventListener('input', function() {
+                if (lock) return;
+                lock = true;
+                const val = parseFloat(this.value);
+                if (this.value.trim() === '' || isNaN(val)) {
+                    cInput.value = '';
+                } else {
+                    cInput.value = Math.round(fToC(val) * 100) / 100;
+                }
+                lock = false;
+            });
+
+            cInput.addEventListener('input', function() {
+                if (lock) return;
+                lock = true;
+                const val = parseFloat(this.value);
+                if (this.value.trim() === '' || isNaN(val)) {
+                    fInput.value = '';
+                } else {
+                    fInput.value = Math.round(cToF(val) * 100) / 100;
+                }
+                lock = false;
+            });
+        })();
+
+        // ==================== ЗАВДАННЯ 2 ====================
+        (function() {
+            let correct = 0, total = 0;
+            let currentA = 0, currentB = 0, answered = false;
+
+            const scoreEl = document.getElementById('score2');
+            const questionEl = document.getElementById('question2');
+            const answerEl = document.getElementById('answer2');
+            const resultEl = document.getElementById('result2');
+            const nextBtn = document.getElementById('nextBtn2');
+            const checkBtn = document.getElementById('checkBtn2');
+
+            function updateScore() {
+                const pct = total === 0 ? 0 : Math.round((correct / total) * 100);
+                scoreEl.textContent = `Загальний рахунок: ${pct}% (${correct} правильних відповідей з ${total})`;
+            }
+
+            function nextQuestion() {
+                currentA = Math.floor(Math.random() * 9) + 1;
+                currentB = Math.floor(Math.random() * 9) + 1;
+                questionEl.textContent = `${currentA} × ${currentB} =`;
+                answerEl.value = '';
+                resultEl.textContent = '';
+                resultEl.className = 'result';
+                answered = false;
+                answerEl.focus();
+            }
+
+            function checkAnswer() {
+                if (answered) return;
+                const userAns = parseInt(answerEl.value, 10);
+                const right = currentA * currentB;
+                total++;
+                if (userAns === right) {
+                    correct++;
+                    resultEl.textContent = 'Правильно!';
+                    resultEl.className = 'result success';
+                } else {
+                    resultEl.textContent = `Помилка, правильна відповідь «${right}»`;
+                    resultEl.className = 'result error';
+                }
+                answered = true;
+                updateScore();
+            }
+
+            nextBtn.addEventListener('click', nextQuestion);
+            checkBtn.addEventListener('click', checkAnswer);
+            answerEl.addEventListener('keydown', function(e) {
+                if (e.key === 'Enter') checkAnswer();
+            });
+
+            updateScore();
+            nextQuestion();
+        })();
+
+        // ==================== ЗАВДАННЯ 3 ====================
+        (function() {
+            let correct = 0, total = 0;
+            let currentA = 0, currentB = 0, rightAnswer = 0, answered = false;
+
+            const scoreEl = document.getElementById('score3');
+            const questionEl = document.getElementById('question3');
+            const optionsEl = document.getElementById('options3');
+            const resultEl = document.getElementById('result3');
+            const nextBtn = document.getElementById('nextBtn3');
+
+            function updateScore() {
+                const pct = total === 0 ? 0 : Math.round((correct / total) * 100);
+                scoreEl.textContent = `Загальний рахунок: ${pct}% (${correct} правильних відповідей з ${total})`;
+            }
+
+            function shuffle(arr) {
+                for (let i = arr.length - 1; i > 0; i--) {
+                    const j = Math.floor(Math.random() * (i + 1));
+                    [arr[i], arr[j]] = [arr[j], arr[i]];
+                }
+                return arr;
+            }
+
+            function generateOptions(correctVal) {
+                const opts = new Set([correctVal]);
+                while (opts.size < 4) {
+                    // generate plausible wrong answers
+                    let wrong;
+                    if (Math.random() < 0.5) {
+                        wrong = correctVal + (Math.floor(Math.random() * 10) - 5);
+                    } else {
+                        wrong = (Math.floor(Math.random() * 9) + 1) * (Math.floor(Math.random() * 9) + 1);
+                    }
+                    if (wrong > 0 && wrong !== correctVal) opts.add(wrong);
+                }
+                return shuffle([...opts]);
+            }
+
+            function nextQuestion() {
+                currentA = Math.floor(Math.random() * 9) + 1;
+                currentB = Math.floor(Math.random() * 9) + 1;
+                rightAnswer = currentA * currentB;
+                questionEl.textContent = `${currentA} × ${currentB} =`;
+                resultEl.textContent = '';
+                resultEl.className = 'result';
+                answered = false;
+
+                const options = generateOptions(rightAnswer);
+                optionsEl.innerHTML = '';
+                options.forEach((val, idx) => {
+                    const label = document.createElement('label');
+                    const radio = document.createElement('input');
+                    radio.type = 'radio';
+                    radio.name = 'mul3';
+                    radio.value = val;
+                    radio.id = 'opt3_' + idx;
+                    radio.addEventListener('change', function() {
+                        if (answered) return;
+                        answered = true;
+                        total++;
+                        if (parseInt(this.value, 10) === rightAnswer) {
+                            correct++;
+                            resultEl.textContent = 'Правильно!';
+                            resultEl.className = 'result success';
+                        } else {
+                            resultEl.textContent = `Помилка, правильна відповідь «${rightAnswer}»`;
+                            resultEl.className = 'result error';
+                        }
+                        // disable all radios after one try
+                        optionsEl.querySelectorAll('input').forEach(r => r.disabled = true);
+                        updateScore();
+                    });
+                    label.appendChild(radio);
+                    label.appendChild(document.createTextNode(' ' + val));
+                    optionsEl.appendChild(label);
+                });
+            }
+
+            nextBtn.addEventListener('click', nextQuestion);
+            updateScore();
+            nextQuestion();
+        })();
+
+        // ==================== ЗАВДАННЯ 4 ====================
+        function initPhotoRotator(containerId, imagesArray) {
+            const container = document.getElementById(containerId);
+            if (!container) return;
+
+            let current = 0;
+            const total = imagesArray.length;
+
+            // Clear previous
+            container.innerHTML = '';
+
+            // Counter
+            const counter = document.createElement('div');
+            counter.className = 'counter';
+            container.appendChild(counter);
+
+            // Image wrapper (fixed height to avoid jumps)
+            const imgWrap = document.createElement('div');
+            imgWrap.className = 'img-wrap';
+            const img = document.createElement('img');
+            img.alt = '';
+            imgWrap.appendChild(img);
+            container.appendChild(imgWrap);
+
+            // Navigation
+            const nav = document.createElement('div');
+            nav.className = 'nav';
+            const prevLink = document.createElement('a');
+            prevLink.href = '#';
+            prevLink.textContent = 'Назад';
+            prevLink.addEventListener('click', function(e) {
+                e.preventDefault();
+                if (current > 0) {
+                    current--;
+                    show();
+                }
+            });
+            const nextLink = document.createElement('a');
+            nextLink.href = '#';
+            nextLink.textContent = 'Вперед';
+            nextLink.addEventListener('click', function(e) {
+                e.preventDefault();
+                if (current < total - 1) {
+                    current++;
+                    show();
+                }
+            });
+            nav.appendChild(prevLink);
+            nav.appendChild(nextLink);
+            container.appendChild(nav);
+
+            // Title & description
+            const titleEl = document.createElement('div');
+            titleEl.className = 'title';
+            container.appendChild(titleEl);
+            const descEl = document.createElement('div');
+            descEl.className = 'desc';
+            container.appendChild(descEl);
+
+            function show() {
+                const item = imagesArray[current];
+                img.src = item.path;
+                img.alt = item.title;
+                counter.textContent = `Фотографія ${current + 1} з ${total}`;
+                titleEl.textContent = item.title;
+                descEl.textContent = item.description;
+
+                // Hide/show nav links
+                if (current === 0) {
+                    prevLink.classList.add('hidden');
+                } else {
+                    prevLink.classList.remove('hidden');
+                }
+                if (current === total - 1) {
+                    nextLink.classList.add('hidden');
+                } else {
+                    nextLink.classList.remove('hidden');
+                }
+            }
+
+            show();
+        }
+
+        // Дані для варіанту 15 — Клавіатури
+        const imagesArray = [
+            {
+                path: 'https://images.unsplash.com/photo-1587825140708-dfaf72ae4b04?w=800&q=80',
+                title: 'Механічна клавіатура RGB',
+                description: 'Ігрова механічна клавіатура з підсвіткою'
+            },
+            {
+                path: 'https://images.unsplash.com/photo-1541140532154-b024d705b90a?w=800&q=80',
+                title: 'Класична чорна клавіатура',
+                description: 'Стандартна мембранна клавіатура для офісу'
+            },
+            {
+                path: 'https://images.unsplash.com/photo-1511467687858-23d96c32e4ae?w=800&q=80',
+                title: 'Біла мінімалістична клавіатура',
+                description: 'Компактна клавіатура з чистим дизайном'
+            },
+            {
+                path: 'https://images.unsplash.com/photo-1595225476474-87563907a212?w=800&q=80',
+                title: 'Клавіатура з підсвіткою',
+                description: 'Сучасна ігрова клавіатура з RGB-підсвіткою'
+            },
+            {
+                path: 'https://images.unsplash.com/photo-1563191911-e65f8655ebf9?w=800&q=80',
+                title: 'Ергономічна клавіатура',
+                description: 'Клавіатура для комфортної роботи'
+            }
+        ];
+
+        // Виклик функції ініціалізації
+        initPhotoRotator('rotator', imagesArray);
+
+        // ==================== ЗАВДАННЯ 5 ====================
+        function initCaptcha(digitsCount) {
+            const container = document.getElementById('captchaContainer');
+            container.innerHTML = '';
+
+            // Generate random number
+            let secret = '';
+            for (let i = 0; i < digitsCount; i++) {
+                secret += Math.floor(Math.random() * 10);
+            }
+
+            // Label
+            const label = document.createElement('div');
+            label.textContent = 'Введіть число';
+            label.style.fontWeight = 'bold';
+            label.style.marginBottom = '6px';
+            container.appendChild(label);
+
+            // Digits as "pixel" spans
+            const digitsWrap = document.createElement('div');
+            digitsWrap.className = 'captcha-digits';
+            for (let i = 0; i < secret.length; i++) {
+                const span = document.createElement('span');
+                span.className = 'digit';
+                span.textContent = secret[i];
+                // slight random rotation/offset for "noisy" look
+                const rot = (Math.random() * 12 - 6).toFixed(1);
+                const ty = (Math.random() * 4 - 2).toFixed(1);
+                span.style.transform = `rotate(${rot}deg) translateY(${ty}px)`;
+                span.style.color = `hsl(${Math.random()*40+200}, 60%, ${30 + Math.random()*20}%)`;
+                digitsWrap.appendChild(span);
+            }
+            container.appendChild(digitsWrap);
+
+            // Input
+            const input = document.createElement('input');
+            input.type = 'text';
+            input.placeholder = 'введіть число';
+            input.style.display = 'block';
+            input.style.marginTop = '8px';
+            input.style.width = '160px';
+            container.appendChild(input);
+
+            // Result message
+            const msg = document.createElement('div');
+            msg.className = 'captcha-result';
+            container.appendChild(msg);
+
+            // Check on input / Enter / blur
+            function check() {
+                const val = input.value.trim();
+                if (val === '') {
+                    msg.textContent = '';
+                    return;
+                }
+                if (val === secret) {
+                    msg.textContent = 'Правильно!';
+                    msg.style.color = '#38a169';
+                } else {
+                    msg.textContent = 'Помилка';
+                    msg.style.color = '#e53e3e';
+                }
+            }
+
+            input.addEventListener('input', check);
+            input.addEventListener('keydown', function(e) {
+                if (e.key === 'Enter') check();
+            });
+
+            // Optional: button for check (not required by task, but useful)
+            const btn = document.createElement('button');
+            btn.textContent = 'Перевірити';
+            btn.style.marginTop = '8px';
+            btn.addEventListener('click', check);
+            container.appendChild(btn);
+        }
+
+        // Ініціалізація капчі з 2 цифрами (як у прикладі)
+        initCaptcha(2);
+    </script>
+</body>
+</html>
