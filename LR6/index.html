@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSS Generator</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js" defer></script>
+</head>
+<body>
+
+<main class="generator">
+    <h1>CSS Generator</h1>
+
+    <!-- Вкладки -->
+    <div class="tabs" id="tabs">
+        <button class="tab active" type="button" data-tab="radius">Border Radius</button>
+        <button class="tab" type="button" data-tab="property-2">Background Color</button>
+        <button class="tab" type="button" data-tab="property-3">Text Align</button>
+    </div>
+
+    <!-- Контент вкладки 1: Border Radius -->
+    <div class="tab-content active" data-content="radius">
+        <h2>Border Radius</h2>
+
+        <div class="control">
+            <label for="top-left">Top Left</label>
+            <input id="top-left" type="range" min="0" max="100" value="0">
+            <span id="top-left-value">0 px</span>
+        </div>
+
+        <div class="control">
+            <label for="top-right">Top Right</label>
+            <input id="top-right" type="range" min="0" max="100" value="0">
+            <span id="top-right-value">0 px</span>
+        </div>
+
+        <div class="control">
+            <label for="bottom-right">Bottom Right</label>
+            <input id="bottom-right" type="range" min="0" max="100" value="0">
+            <span id="bottom-right-value">0 px</span>
+        </div>
+
+        <div class="control">
+            <label for="bottom-left">Bottom Left</label>
+            <input id="bottom-left" type="range" min="0" max="100" value="0">
+            <span id="bottom-left-value">0 px</span>
+        </div>
+    </div>
+
+    <!-- Контент вкладки 2: Background Color -->
+    <div class="tab-content" data-content="property-2">
+        <h2>Background Color</h2>
+        <div id="property-2-controls">
+            <div class="control">
+                <label for="bg-color">Background Color</label>
+                <input id="bg-color" type="color" value="#dddddd">
+            </div>
+        </div>
+    </div>
+
+    <!-- Контент вкладки 3: Text Align -->
+    <div class="tab-content" data-content="property-3">
+        <h2>Text Align</h2>
+        <div id="property-3-controls">
+            <div class="control">
+                <label for="text-align">Text Align</label>
+                <select id="text-align">
+                    <option value="left">left</option>
+                    <option value="center">center</option>
+                    <option value="right">right</option>
+                </select>
+            </div>
+        </div>
+    </div>
+
+    <!-- Прев'ю -->
+    <section class="preview-section">
+        <h2>Preview</h2>
+        <div id="preview" class="preview">
+            <span>Preview</span>
+            <button id="preview-button" type="button">Click</button>
+        </div>
+        <p id="coordinates">X: 0; Y: 0</p>
+    </section>
+
+    <!-- CSS код -->
+    <section class="result">
+        <h2>CSS Code</h2>
+        <textarea id="css-code" rows="6" readonly></textarea>
+        <button id="copy-button" type="button">Скопіювати CSS</button>
+        <p id="copy-message"></p>
+    </section>
+
+    <!-- Форма збереження пресета -->
+    <form id="preset-form">
+        <h2>Збереження пресета</h2>
+        <label for="preset-name">Назва пресета</label>
+        <input id="preset-name" type="text">
+        <span id="preset-error"></span>
+        <button type="submit">Зберегти</button>
+    </form>
+</main>
+
+<button id="scroll-top" type="button" aria-label="Повернутися вгору">↑</button>
+
+</body>
+</html>
