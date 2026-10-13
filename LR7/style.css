@@ -1,0 +1,94 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 20px;
+    background-color: #fafafa;
+    color: #222;
+}
+
+h1 {
+    font-size: 22px;
+    margin-bottom: 15px;
+}
+
+#location,
+#distance {
+    margin: 8px 0;
+    font-size: 16px;
+    padding: 6px 10px;
+    background: #fff;
+    border-left: 4px solid #4CAF50;
+    border-radius: 4px;
+}
+
+#map {
+    height: 400px;
+    width: 100%;
+    margin-top: 15px;
+    border-radius: 8px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+}
+
+form {
+    margin-bottom: 15px;
+}
+
+input[type="button"] {
+    padding: 8px 14px;
+    margin-right: 8px;
+    cursor: pointer;
+    border: none;
+    border-radius: 5px;
+    background-color: #4CAF50;
+    color: #fff;
+    font-size: 14px;
+    transition: background 0.2s;
+}
+
+input[type="button"]:hover {
+    background-color: #45a049;
+}
+
+#clearWatch {
+    background-color: #e74c3c;
+}
+
+#clearWatch:hover {
+    background-color: #c0392b;
+}
+
+.dest-block {
+    margin-top: 15px;
+    padding: 12px 15px;
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+.dest-block h3 {
+    margin-top: 0;
+    font-size: 16px;
+}
+
+.dest-block input[type="number"] {
+    width: 130px;
+    padding: 6px;
+    margin-right: 8px;
+    margin-bottom: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+#destBtn {
+    padding: 7px 14px;
+    cursor: pointer;
+    border: none;
+    border-radius: 5px;
+    background-color: #3498db;
+    color: #fff;
+    font-size: 14px;
+    transition: background 0.2s;
+}
+
+#destBtn:hover {
+    background-color: #2980b9;
+}

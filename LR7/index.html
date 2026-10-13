@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Де б ти не був — ти там є</title>
+
+    <!-- Leaflet CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+
+    <!-- Наш CSS -->
+    <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+    <h1>Де б ти не був — ти там є</h1>
+
+    <form>
+        <input type="button" id="watch" value="Стежити за мною">
+        <input type="button" id="clearWatch" value="Зупинити стеження">
+    </form>
+
+    <div id="location">Тут з'явиться ваше місцезнаходження.</div>
+    <div id="distance">Тут з'явиться відстань до Коледжу.</div>
+
+    <!-- Карта -->
+    <div id="map"></div>
+
+    <!-- Пункт призначення -->
+    <div class="dest-block">
+        <h3>Пункт призначення</h3>
+        <input type="number" id="destLat" placeholder="Широта" step="0.0001">
+        <input type="number" id="destLng" placeholder="Довгота" step="0.0001">
+        <button id="destBtn">Показати на карті</button>
+    </div>
+
+    <!-- Leaflet JS -->
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+    <!-- Наш JS -->
+    <script src="script.js"></script>
+</body>
+</html>
