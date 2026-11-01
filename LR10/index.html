@@ -1,0 +1,488 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Корзина іграшок — Лабораторна робота</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Segoe UI', Arial, sans-serif;
+      background: #f4f6f9;
+      color: #333;
+      line-height: 1.5;
+    }
+
+    header {
+      background: #e91e63;
+      color: white;
+      padding: 14px 30px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+    }
+    header h1 { font-size: 22px; font-weight: 600; }
+    .cart-icon-wrap {
+      position: relative;
+      cursor: pointer;
+      font-size: 28px;
+      padding: 6px 12px;
+      border-radius: 50%;
+      transition: background 0.2s;
+    }
+    .cart-icon-wrap:hover { background: rgba(255,255,255,0.15); }
+    #cart-count {
+      position: absolute;
+      top: -2px;
+      right: -2px;
+      background: #ffeb3b;
+      color: #333;
+      font-size: 12px;
+      font-weight: bold;
+      min-width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0 4px;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 30px auto;
+      padding: 0 20px;
+    }
+    .products-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 24px;
+    }
+    .product-card {
+      background: white;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 3px 12px rgba(0,0,0,0.08);
+      transition: transform 0.2s, box-shadow 0.2s;
+      display: flex;
+      flex-direction: column;
+    }
+    .product-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 8px 20px rgba(0,0,0,0.12);
+    }
+    .product-img {
+      height: 180px;
+      background: #fce4ec;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 52px;
+    }
+    .product-info {
+      padding: 16px;
+      flex-grow: 1;
+      display: flex;
+      flex-direction: column;
+    }
+    .product-category {
+      font-size: 12px;
+      color: #e91e63;
+      font-weight: 600;
+      text-transform: uppercase;
+      margin-bottom: 4px;
+    }
+    .product-name {
+      font-size: 16px;
+      font-weight: 600;
+      margin-bottom: 8px;
+    }
+    .product-price {
+      font-size: 18px;
+      font-weight: 700;
+      color: #c2185b;
+      margin-bottom: 14px;
+    }
+    .btn {
+      border: none;
+      padding: 10px 16px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 14px;
+      font-weight: 600;
+      transition: background 0.2s;
+    }
+    .btn-add {
+      background: #e91e63;
+      color: white;
+      width: 100%;
+      margin-top: auto;
+    }
+    .btn-add:hover { background: #c2185b; }
+
+    .cart-page { display: none; }
+    .cart-table {
+      width: 100%;
+      border-collapse: collapse;
+      background: white;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 3px 12px rgba(0,0,0,0.08);
+    }
+    .cart-table th {
+      background: #e91e63;
+      color: white;
+      padding: 14px 12px;
+      text-align: left;
+      font-weight: 600;
+    }
+    .cart-table td {
+      padding: 14px 12px;
+      border-bottom: 1px solid #eee;
+    }
+    .cart-table tr:last-child td { border-bottom: none; }
+    .qty-input {
+      width: 60px;
+      padding: 6px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      text-align: center;
+    }
+    .btn-delete {
+      background: #f44336;
+      color: white;
+      padding: 6px 12px;
+      font-size: 13px;
+    }
+    .btn-delete:hover { background: #d32f2f; }
+    .cart-actions {
+      margin-top: 25px;
+      display: flex;
+      gap: 15px;
+      justify-content: flex-end;
+    }
+    .btn-pay {
+      background: #4caf50;
+      color: white;
+      padding: 12px 28px;
+    }
+    .btn-pay:hover { background: #388e3c; }
+    .btn-back {
+      background: #757575;
+      color: white;
+      padding: 12px 28px;
+    }
+    .btn-back:hover { background: #616161; }
+
+    .modal-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.5);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 1000;
+    }
+    .modal {
+      background: white;
+      border-radius: 14px;
+      padding: 28px;
+      width: 90%;
+      max-width: 400px;
+      box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+      text-align: center;
+    }
+    .modal h3 { margin-bottom: 16px; font-size: 20px; }
+    .modal input[type="number"] {
+      width: 100px;
+      padding: 10px;
+      font-size: 18px;
+      text-align: center;
+      border: 2px solid #e91e63;
+      border-radius: 8px;
+      margin: 10px 0 20px;
+    }
+    .modal-buttons {
+      display: flex;
+      gap: 12px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+    .btn-modal {
+      padding: 10px 20px;
+      border-radius: 8px;
+      border: none;
+      cursor: pointer;
+      font-weight: 600;
+    }
+    .btn-primary { background: #e91e63; color: white; }
+    .btn-primary:hover { background: #c2185b; }
+    .btn-secondary { background: #e0e0e0; color: #333; }
+    .btn-secondary:hover { background: #bdbdbd; }
+
+    .empty-cart {
+      text-align: center;
+      padding: 60px 20px;
+      background: white;
+      border-radius: 12px;
+      font-size: 18px;
+      color: #757575;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>🧸 Магазин дитячих іграшок</h1>
+    <div class="cart-icon-wrap" onclick="openCart()" title="Корзина">
+      🛒
+      <span id="cart-count">0</span>
+    </div>
+  </header>
+
+  <div class="container" id="products-page">
+    <div class="products-grid" id="products-grid"></div>
+  </div>
+
+  <div class="container cart-page" id="cart-page">
+    <h2 style="margin-bottom: 20px;">Ваша корзина</h2>
+    <div id="cart-content"></div>
+  </div>
+
+  <!-- Модалка: пуста корзина -->
+  <div class="modal-overlay" id="modal-empty">
+    <div class="modal">
+      <h3>Корзина пуста</h3>
+      <p style="margin-bottom: 20px;">Додайте іграшки, щоб продовжити</p>
+      <button class="btn-modal btn-primary" onclick="closeModal('modal-empty')">Зрозуміло</button>
+    </div>
+  </div>
+
+  <!-- Модалка: кількість -->
+  <div class="modal-overlay" id="modal-qty">
+    <div class="modal">
+      <h3>Вкажіть кількість:</h3>
+      <input type="number" id="qty-input" min="1" value="1">
+      <div class="modal-buttons">
+        <button class="btn-modal btn-primary" onclick="confirmAddToCart()">Додати до корзини</button>
+        <button class="btn-modal btn-secondary" onclick="closeModal('modal-qty')">Скасувати</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Модалка: товар додано -->
+  <div class="modal-overlay" id="modal-added">
+    <div class="modal">
+      <h3>Товар додано</h3>
+      <p style="margin-bottom: 20px;">Іграшку успішно додано до корзини</p>
+      <div class="modal-buttons">
+        <button class="btn-modal btn-primary" onclick="goToCart()">Перейти у корзину</button>
+        <button class="btn-modal btn-secondary" onclick="closeModal('modal-added')">Повернутись до покупок</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // ========== ТОВАРИ — ДИТЯЧІ ІГРАШКИ ==========
+    const products = [
+      { id: 1, name: "М'яка іграшка «Ведмедик»", category: "М'які іграшки", price: 450, emoji: "🧸" },
+      { id: 2, name: "Конструктор LEGO Classic", category: "Конструктори", price: 890, emoji: "🧱" },
+      { id: 3, name: "Машинка на радіокеруванні", category: "Транспорт", price: 650, emoji: "🚗" },
+      { id: 4, name: "Лялька Barbie Dreamhouse", category: "Ляльки", price: 1200, emoji: "👗" },
+      { id: 5, name: "Набір кубиків для малюків", category: "Розвиваючі", price: 320, emoji: "🎲" },
+      { id: 6, name: "Інтерактивний робот", category: "Електронні", price: 1450, emoji: "🤖" },
+      { id: 7, name: "Пазли «Казковий світ» 1000 шт", category: "Пазли", price: 380, emoji: "🧩" },
+      { id: 8, name: "Набір для малювання", category: "Творчість", price: 275, emoji: "🎨" }
+    ];
+
+    // Корзина тільки в пам'яті (без localStorage)
+    let cart = [];
+    let currentProductId = null;
+
+    function init() {
+      renderProducts();
+      updateCartCount();
+    }
+
+    function renderProducts() {
+      const grid = document.getElementById('products-grid');
+      grid.innerHTML = products.map(p => `
+        <div class="product-card">
+          <div class="product-img">${p.emoji}</div>
+          <div class="product-info">
+            <div class="product-category">${p.category}</div>
+            <div class="product-name">${p.name}</div>
+            <div class="product-price">${p.price} грн</div>
+            <button class="btn btn-add" onclick="openQtyModal(${p.id})">
+              У корзину
+            </button>
+          </div>
+        </div>
+      `).join('');
+    }
+
+    function updateCartCount() {
+      document.getElementById('cart-count').textContent = cart.length;
+    }
+
+    function openCart() {
+      if (cart.length === 0) {
+        showModal('modal-empty');
+      } else {
+        goToCart();
+      }
+    }
+
+    function goToCart() {
+      closeAllModals();
+      document.getElementById('products-page').style.display = 'none';
+      document.getElementById('cart-page').style.display = 'block';
+      renderCart();
+    }
+
+    function goToProducts() {
+      document.getElementById('cart-page').style.display = 'none';
+      document.getElementById('products-page').style.display = 'block';
+    }
+
+    function showModal(id) {
+      document.getElementById(id).style.display = 'flex';
+    }
+
+    function closeModal(id) {
+      document.getElementById(id).style.display = 'none';
+    }
+
+    function closeAllModals() {
+      document.querySelectorAll('.modal-overlay').forEach(m => m.style.display = 'none');
+    }
+
+    function openQtyModal(productId) {
+      currentProductId = productId;
+      document.getElementById('qty-input').value = 1;
+      showModal('modal-qty');
+    }
+
+    function confirmAddToCart() {
+      const qty = parseInt(document.getElementById('qty-input').value);
+      if (!qty || qty < 1) {
+        alert('Вкажіть коректну кількість (мінімум 1)');
+        return;
+      }
+
+      const product = products.find(p => p.id === currentProductId);
+      const existing = cart.find(item => item.id === product.id);
+
+      if (existing) {
+        existing.qty += qty;
+      } else {
+        cart.push({
+          id: product.id,
+          name: product.name,
+          price: product.price,
+          qty: qty
+        });
+      }
+
+      updateCartCount();
+      closeModal('modal-qty');
+      showModal('modal-added');
+    }
+
+    function renderCart() {
+      const content = document.getElementById('cart-content');
+
+      if (cart.length === 0) {
+        content.innerHTML = `
+          <div class="empty-cart">
+            Корзина пуста<br>
+            <button class="btn btn-back" style="margin-top:20px" onclick="goToProducts()">
+              Повернутись до покупок
+            </button>
+          </div>`;
+        return;
+      }
+
+      let total = 0;
+      let rows = cart.map((item, index) => {
+        const sum = item.price * item.qty;
+        total += sum;
+        return `
+          <tr>
+            <td>${index + 1}</td>
+            <td>${item.name}</td>
+            <td>${item.price.toFixed(2)}</td>
+            <td>
+              <input type="number" class="qty-input" min="1" value="${item.qty}"
+                     onchange="changeQty(${item.id}, this.value)">
+            </td>
+            <td>${sum.toFixed(2)}</td>
+            <td>
+              <button class="btn btn-delete" onclick="removeItem(${item.id})">видалити</button>
+            </td>
+          </tr>
+        `;
+      }).join('');
+
+      content.innerHTML = `
+        <table class="cart-table">
+          <thead>
+            <tr>
+              <th>№</th>
+              <th>Назва товару</th>
+              <th>Ціна за од.</th>
+              <th>К-сть</th>
+              <th>Сума</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody>
+            ${rows}
+            <tr style="font-weight:700; background:#fce4ec;">
+              <td colspan="4" style="text-align:right;">Разом до оплати:</td>
+              <td colspan="2">${total.toFixed(2)} грн.</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <div class="cart-actions">
+          <button class="btn btn-back" onclick="goToProducts()">Повернутись до покупок</button>
+          <button class="btn btn-pay" onclick="pay()">Оплатити</button>
+        </div>
+      `;
+    }
+
+    function changeQty(id, newQty) {
+      newQty = parseInt(newQty);
+      if (!newQty || newQty < 1) newQty = 1;
+
+      const item = cart.find(i => i.id === id);
+      if (item) {
+        item.qty = newQty;
+        renderCart();
+      }
+    }
+
+    function removeItem(id) {
+      cart = cart.filter(i => i.id !== id);
+      updateCartCount();
+      renderCart();
+    }
+
+    function pay() {
+      if (cart.length === 0) return;
+      const total = cart.reduce((s, i) => s + i.price * i.qty, 0);
+      alert(`Дякуємо за замовлення!\nСума до сплати: ${total.toFixed(2)} грн.\nГарних покупок! 🧸`);
+      cart = [];
+      updateCartCount();
+      goToProducts();
+    }
+
+    init();
+  </script>
+</body>
+</html>
