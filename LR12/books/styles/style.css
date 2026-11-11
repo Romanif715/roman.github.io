@@ -1,0 +1,47 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: system-ui, sans-serif;
+  line-height: 1.5;
+  background: #f6f7f9;
+  color: #18202b;
+}
+
+.container {
+  max-width: 720px;
+  margin: 32px auto;
+  padding: 24px;
+  background: white;
+  border-radius: 12px;
+}
+
+ul {
+  padding-left: 24px;
+}
+
+li {
+  margin-bottom: 8px;
+}
+
+form {
+  display: grid;
+  gap: 10px;
+}
+
+input,
+button {
+  font: inherit;
+  padding: 10px;
+}
+
+button {
+  cursor: pointer;
+}
+
+button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
