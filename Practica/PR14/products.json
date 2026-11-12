@@ -1,0 +1,92 @@
+{
+  "products": [
+    {
+      "id": 1,
+      "name": { "uk": "М'яка іграшка «Ведмедик»", "en": "Soft toy «Teddy Bear»" },
+      "category": { "uk": "М'які іграшки", "en": "Soft toys" },
+      "price": 450,
+      "description": {
+        "uk": "М'який плюшевий ведмедик для обіймів і затишних ігор",
+        "en": "Soft plush teddy bear for hugs and cozy play"
+      },
+      "image": "🧸"
+    },
+    {
+      "id": 2,
+      "name": { "uk": "Конструктор LEGO Classic", "en": "LEGO Classic constructor" },
+      "category": { "uk": "Конструктори", "en": "Constructors" },
+      "price": 890,
+      "description": {
+        "uk": "Класичний набір LEGO для розвитку творчості та уяви",
+        "en": "Classic LEGO set for developing creativity and imagination"
+      },
+      "image": "🧱"
+    },
+    {
+      "id": 3,
+      "name": { "uk": "Машинка на радіокеруванні", "en": "Remote control car" },
+      "category": { "uk": "Транспорт", "en": "Transport" },
+      "price": 650,
+      "description": {
+        "uk": "Швидка машинка з дистанційним керуванням",
+        "en": "Fast car with remote control"
+      },
+      "image": "🚗"
+    },
+    {
+      "id": 4,
+      "name": { "uk": "Лялька Barbie Dreamhouse", "en": "Barbie Dreamhouse doll" },
+      "category": { "uk": "Ляльки", "en": "Dolls" },
+      "price": 1200,
+      "description": {
+        "uk": "Стильна лялька Barbie з аксесуарами",
+        "en": "Stylish Barbie doll with accessories"
+      },
+      "image": "👗"
+    },
+    {
+      "id": 5,
+      "name": { "uk": "Набір кубиків для малюків", "en": "Building blocks for toddlers" },
+      "category": { "uk": "Розвиваючі", "en": "Educational" },
+      "price": 320,
+      "description": {
+        "uk": "Яскраві кубики для найменших, розвивають моторику",
+        "en": "Bright blocks for the little ones, develop motor skills"
+      },
+      "image": "🎲"
+    },
+    {
+      "id": 6,
+      "name": { "uk": "Інтерактивний робот", "en": "Interactive robot" },
+      "category": { "uk": "Електронні", "en": "Electronic" },
+      "price": 1450,
+      "description": {
+        "uk": "Розумний робот, який реагує на команди та рухається",
+        "en": "Smart robot that responds to commands and moves"
+      },
+      "image": "🤖"
+    },
+    {
+      "id": 7,
+      "name": { "uk": "Пазли «Казковий світ» 1000 шт", "en": "Puzzle «Fairy Tale World» 1000 pcs" },
+      "category": { "uk": "Пазли", "en": "Puzzles" },
+      "price": 380,
+      "description": {
+        "uk": "Пазли на 1000 елементів з казковим сюжетом",
+        "en": "1000-piece puzzle with a fairy tale plot"
+      },
+      "image": "🧩"
+    },
+    {
+      "id": 8,
+      "name": { "uk": "Набір для малювання", "en": "Drawing set" },
+      "category": { "uk": "Творчість", "en": "Creativity" },
+      "price": 275,
+      "description": {
+        "uk": "Повний набір фарб, олівців та паперу для творчості",
+        "en": "Complete set of paints, pencils and paper for creativity"
+      },
+      "image": "🎨"
+    }
+  ]
+}
